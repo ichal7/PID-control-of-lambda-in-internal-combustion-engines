@@ -1,0 +1,182 @@
+\chapter{Control of Lambda in Internal Combustion Engines}\label{ch:4}
+
+The control of lambda in internal combustion engines has proven to be of high importance to both the efficiency of the vehicle and the environment. In this chapter we discuss a case study of controlling lambda using a PID controller. The  simulation model used to describe dynamic engine variable responses is the so-called Mean Value Engine Model (MVEM), and the whole simulation is running in MATLAB software. The simulated engine is a 1275cc British Leyland mapped at DTU in 1990 \cite{dtu}.  
+
+\section{Mean Value Engine Model}
+
+Mean Value Engine Models (MVEMs) are dynamic simulation models which seek to predict the mean values of the engine variables dynamically in time. This chapter presents a nonlinear four state (four differential equation) dynamic model of an SI engine. State variables are those which are determined by integrating the differential equations which are used to describe the engine \cite{hendricks1990mean}. 
+
+In the engine model to be presented the state variables are the manifold pressure the crank shaft speed the fuel flow into the combustion chamber and the measured lambda by sensor which is considered as the fourth state of the MVEM.
+
+Th engine input variables are those which can be adjusted external to the engine with the purpose of controlling it. For this certain model the inputs are the injected fuel mass flow and the throttle plate angle, which in this case is regarded as a disturbance. 
+
+\subsection{State Equations}
+
+As Hendricks and Sorenson say in \cite{hendricks1990mean}, an SI engine can be modelled from considerations of where the energy is concentrated in the engine. The fuel flow together with the air flow constitute the input energy flow to the engine while the energy output is the load power plus the heating and frictional and pumping losses. This suggests that a mean value engine model can be built up of three dynamic subsystems. 
+
+\begin{enumerate}
+\item Intake manifold air mass flow.
+\item Crankshaft and loading.
+\item fuel vapor and fuel film.
+\end{enumerate}
+To sufficiently construct a working MVEM the fourth state (the measured lambda by sensor) is needed. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{mvem}
+    \caption{Block diagram of mean value model of engine \cite{lambdacontrol}}
+    \label{fig:feedback}
+\end{figure}
+  
+\subsubsection{Intake manifold air mass flow sub-system}
+
+In the derivation of the manifold pressure state equation the procedure is to apply conservation of mass on the intake manifold which is considered as a control volume and assume air as an ideal gas. This results in the first state equation as
+
+\begin{equation}
+\dot{P_{man}}=\frac{RTi}{Vi}(- \dot{m_{ap}} + \dot{m_{at}})
+\end{equation}
+
+In eq. (3.1) $\dot{m_{ap}}$ is a function of crank shaft speed and manifold pressure. Hendricks has obtained the following modified dynamics for $\dot{m_{ap}}$ \cite{manifold} 
+
+\begin{equation}
+\dot{m_{ap}}=\frac{Vd}{120RTi}(sP_{man}-y)n
+\end{equation}
+where s and y are cosidered as the constants for typical 4-stroke SI engines according to \cite{manifold}.
+\\
+
+$\dot{m_{at}}$ is a function of the throttle plate angle and the manifold pressure which can is defined, according to \cite{manifold}, as follows
+
+\begin{equation}
+\dot{m_{at}}=\dot{m_{at1}}\frac{Pa}{\sqrt{Ta}}\beta_{1}(\alpha)\beta_{2}(P_{man})
+\end{equation}
+where $\dot{m_{at1}}$ is a fitting constant and $\beta_{1}(\alpha)$, $\beta_{2}(P_{man})$ are considered as:
+
+\begin{align}
+&\beta_{1}(\alpha) =1-\alpha_{1} cos(\alpha_{0}+\alpha_{2} cos(\alpha))
+\\
+&\beta_{2}(P_{man}) = \begin{cases} \frac{1}{P_{n}}\sqrt{P_{man}^{P_{1}}-P_{man}^{P_{2}}}, & \mbox{if } P_{r} \geq P_{c} \\ 1, & \mbox{if } P_{r} < P_{c} \end{cases}
+\end{align}
+where $a_{0}$ is the closed throttle plate angle, $P_{c}$ is a constant scalar, $P_{r}=\displaystyle\frac{P_{man}}{P_{a}}$ and $P_{a}$ is the pressure just in front of the throttle plate.
+
+\subsubsection{Crankshaft and loading sub-system}
+
+The crankshaft state space equation is obtained through the energy conservation principle for the crankshaft rotation. As explained from Hendricks in \cite{hendricks1990mean}, in order to avoid modelling the cooling and exhaust system losses, the thermal efficiency of the engine is inserted as a multiplier of the fuel mass flow.
+
+\begin{equation}
+\dot{n}=\frac{-1}{In}[P_{f}(n)+P_{p}(n,x_{1})+P_{b}(n)]+\frac{1}{In}H_{u}N_{i}(n,P_{man},\lambda)\dot{m_{f}}(t-t_{d})
+\end{equation}
+where the loss powers and thermal efficiency, as well as a complete MVEM for the 1275cc engine, will be thoroughly discussed in Appendix to give an idea of the order of magnitude of the different model parameters in a convenient system of units. 
+
+
+\subsubsection{Fuel vapor and fuel film sub-system}
+
+From all the injected fuel in the intake manifold, the fraction of the fuel flow which strikes the manifold and becomes fuel film after reaching the cold air in the manifold is defined as X, while that which becomes fuel vapor is 1-X. The condensed fuel film gradually vaporizes to be mixed with the fuel vapor and makes $\dot{m_{f}}$ to enter the combustion chamber. Accordingly, the dynamics of the fuel vapor and fuel film sub-system could be summarized as
+
+
+\begin{align}
+\ddot{m_{f}}&=\frac{1}{\tau _{f}}[(1-X)\ddot{m_{fi}}+X\dot{m_{fi}}-\dot{m_{ff}}]
+\\
+\ddot{m_{ff}}&=X\dot{m_{fi}}-\dot{m_{ff}}
+\end{align}
+where $\tau _{f}$ is the fuel film evaporation time constant.
+
+
+\subsubsection{Lambda sensor model}
+
+The fourth state space equation determines the dynamics of a first order lambda sesnor which is summarized as follows \cite{lambdacontrol}
+
+\begin{equation}
+\dot{\lambda _{sensor}}=\frac{1}{\tau _{e}}(- \lambda _{sensor} + \lambda{m} (t -\delta)
+\end{equation}
+where $\lambda _{sensor}$ is the measured lambda by lambda sesnor, and $\tau _{e}$ defines the time delay in the measurements made by the sensor. $\lambda{m}$ is the value of lambda which is directly calculated from the mean value engine model and is defined as follows
+
+\begin{equation}
+\lambda{m}=\frac{\dot{m_{ap}}}{AFR_{st}\dot{m_{f}}}
+\end{equation} 
+
+In eq. (3.9) $\delta$ is the total delay of the lambda sensor defined as
+\begin{equation}
+\delta=(\frac{\theta _{EVO}}{720})(\frac{120}{N_{cyl}n})+t_{d}
+\end{equation}
+
+where $\theta _{EVO}$ is the angle of crankshaft at which the exhaust valve opens and $N_{cyl}$ is the number of cylinders.
+ 
+\section{Simulation}
+
+The simulation of the mean value engine model was performed using the MATLAB software. The differential equations describing the MVEM are nonlinear delay differential equations with general delays and for this reason, the \textit{ddesd}\footnote{Full documentation: \url{https://www.mathworks.com/help/matlab/ref/ddesd.html}} solver has been used.
+
+\subsection{ddesd Solver}
+
+The ddesd solver, in its main form, has four arguments.
+\begin{enumerate}
+	\item ddefun: Function handle that evaluates the right side of the differential equations.
+	\item delays: Function handle that returns a column vector of delays.
+	\item history: Function of $t$ such that $y = history(t)$ returns the solution $y(t)$ for $t \leq t_{0}$ as a column vector. 
+	\item tspan: Interval of integration.
+\end{enumerate}
+
+\subsubsection{ddefun}
+In this function handle every equation of the MVEM, both differential, and algebraic, was written in the form: $dydt= ddefun(t,y,Z)$, where $t$ corresponds to the current $t$, $y$ is a column vector that approximates $y_{t}$ and $Z(:,j)$ approximates $y(d(j))$ for delay $d(j)$ given as component $j$ of delays$(t,y)$. The output is a column vector corresponding to $f(t,y(t),y(d(1),...,y(d(k)))$.
+
+\subsubsection{delays}
+The delays evaluated by this function handle are those from the crankshaft and loading differential equation ($\tau _{d}$) and the lamdba sensor differential equation ($\delta $).
+
+$$t_{d}=\displaystyle\frac{1}{2} \displaystyle\frac{60}{N_{cyl}n}$$
+
+$$\delta=(\frac{\theta _{EVO}}{720})(\frac{120}{N_{cyl}n})+t_{d}$$
+
+\subsubsection{history}
+
+The history of the differential equations was filled in with the rationale of fully warm conditions and is presented in Table \ref{table:history}.
+
+
+\begin{table}[H]
+	\centering
+	\vspace*{-1ex}
+	\scriptsize
+	\vspace{-1ex}
+	\caption{History of the state equations.}
+	\begin{tabular}{|c|c|}
+        \hline
+        \textbf{State}             & \textbf{History}\\ \hline 
+        intake manifold pressure       & 0.7 [bar]\\
+        crankshaft speed          & 3 [krmp]\\
+        fuel flow into combustion chamber       &0.001 [kg/sec]\\
+        measured lamdba by lambda sensor           & 0.8\\
+        \hline
+    \end{tabular}
+    \label{table:history}
+\end{table}
+
+
+
+\section{Closed-loop Control}
+
+Once the ddesd solver has its four arguments, one can obtain the change of all state variables against time, but for certain fixed inputs.
+
+To sufficiently control lambda a closed-loop is needed. In this case study a PID controller is used to regulate lambda. Injected fuel mass flow $\dot{m_{fi}}$ is the manipulated variable and the throttle plate angle $\alpha$ is considered as disturbance. 
+
+That being said, a PID controller is constructed to control lambda by alternating the value of the injected fuel mass flow. A schematic of the closed-loop control is illustrated in Figure \ref{fig:closedlooppid}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{closedlooppid}
+    \caption{Schematic of closed-loop control using a PID controller}
+    \label{fig:closedlooppid}
+\end{figure}
+
+
+\subsection{PID Controller}
+The PID controller source code used in this case study was implemented by  Mohammad Saadeh \cite{pidcode}. After making some alternations with the scope of adjusting it to the case study, a closed-loop control with the MVEM for plant and the PID for controller was completed. 
+
+
+\subsubsection{PID tuning}
+To sufficiently control lambda the PID contoller needed to be tuned. The tuning method used in this case study is the trial and error method.
+
+\begin{enumerate}
+	\item Integral and derivative gains air set to zero.
+	\item Proportional gain is increased until a steady oscillation is obtained. With the increase of P gain the system responses faster but it does not become unstable.
+	\item The resulting proportion value is the current value divided by 1.5.
+	\item Next the integral coefficient is increased until the current oscillations gradually reduce. The scope of the integral controller is to reduce the steady state error, thus integral gain is increased even more until steady state error is minimal. After all these changes an increase in overshoot is occured.
+	\item Finaly, derivative action is increased until, again, the oscillations are at a constant rate. At this state the closed-loop control reacts quickly to the desired value.
+\end{enumerate}
