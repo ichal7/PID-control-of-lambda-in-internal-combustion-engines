@@ -21,3 +21,5 @@ fuel mass flow. The second one is the same closed loop system with the differenc
 that in this case throttle plate angle is regarded as an input disturbance. While on
 the first simulation the PID ability to control lambda is very satisfactory, lambda
 response changes drastically when disturbance is inserted in the system.
+
+Author: John Chalepoudis
