@@ -1,0 +1,146 @@
+\begin{appendices}
+
+\chapter{Complete MVEM for the mapped engine}
+The intention behind the MVEM is that it should as far as possible be physically based and have a form which can be easily understood and used by engine specialists.
+
+The units in the MVEM have been selected to be convenient for calculations on engines with data given in the conventional form rather than for purely physical significance. With that being said, one can conclude that, the units used in the model are as shown in Table \ref{table:units}
+
+\begin{table}[htb]
+	\centering
+	\vspace*{-1ex}
+	\scriptsize
+	\vspace{-1ex}
+	\caption{Units in the Mean Value Engine Model.}
+	\begin{tabular}{|c|c|}
+        \hline
+        \textbf{Variable}      & \textbf{Unit}\\ \hline 
+        throttle angle         & degrees \\
+        crankshaft speed        & rpm/1000 \\
+        engine displacement volume     & litres \\
+        fuel mass flow            & kg/sec \\
+        port and throttle air mass flows         & kg/sec \\
+        pressures               & bar \\
+        powers               & kW \\
+        manifold volume               & $m^3$ \\
+        temperatures               & Kelvin \\
+        moment of inertia               & kg $m^2$ \\
+        \hline
+    \end{tabular}
+    \label{table:units}
+\end{table}
+
+\section{Equations of the MVEM}
+
+As mentioned in Chapter 3, in a general MVEM for SI engines include three nonlinear differential equations  and a fourth one, which is the measured lambda by sensor, to describe four different dynamic engine subsystems. In order to use the differential equations, it is necessary to find algebraic functions for the instantaneous internal engine variables in terms of the engine state variable.
+
+In this section all these differential and algebraic equations will be formed with the parameters for the mapped engine. \footnote{the 1275cc British Leyland engine}
+
+\subsection*{Intake manifold air mass flow sub-system}
+
+For the intake manifold the parameters used in the equations are the following:
+
+\begin{itemize}
+	\item $T_{i}=308$ K 
+	\item $V_{i}=614.6*10^{-6} m^3$
+	\item $R=287*10^{-5}$
+	\item $V_{d}=1.275$ litres
+	\item $s=0.952$
+	\item $y=0.0793$
+	\item $P_{a}=1.013$ bar
+	\item $T_{a}=297$ K
+	\item $\dot{m_{at1}}=7.32$
+	\item $\alpha _{1}=1$ 
+	\item $\alpha _{0}= 5.4$ deg
+	\item $\alpha _{2}=0.4087$
+	\item $P_{n}=0.7404$
+	\item $P_{1}=0.4408$
+	\item $P_{2}=2.3143$
+	\item $P_{c}=0.4125$
+\end{itemize}
+The equations used for these parameters are thoroughly described in Section 3.1.1.1
+
+\subsection*{Crankshaft and loading sub-system}
+
+The crankshaft speed state equation can be written
+\begin{equation}
+\dot{n}=\frac{-1}{In}[P_{f}(n)+P_{p}(n,x_{1})+P_{b}(n)]+\frac{1}{In}H_{u}N_{i}(n,P_{man},\lambda)\dot{m_{f}}(t-t_{d})
+\end{equation}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+For the crankshaft speed the parameters used in the equations are the following:
+\begin{itemize}
+	\item $N_{cyl}=4$
+	\item $I=I_{ac}(\frac{\pi}{30})^2 1000$ \footnote{the scaling of I is necessary because the crankshaft speed state equation is written in terms n rather than the angular velocity for convenience}
+	\item $I_{ac}=0.48 kg*m^2$
+	\item $H_{u}=4.3*10^4$ kJ/kg
+	\item $k_{b}=0.22 kW/krmp^3$
+\end{itemize}
+In eq (A.1) $t_{d}=\displaystyle\frac{1}{2} \displaystyle\frac{60}{N_{cyl}n}$
+\\
+
+The algebraic function for both the loss powers and thermal efficiency are described below.
+\\
+
+The loss powers can currently only be written as empirical regression expressions because of the lack of physical theory for friction, thus
+
+\begin{align}
+&P_{f}(n) = n(1.673+0.272n+0.0135n^2)
+\\
+&P_{p}(n,\dot{P_{man}}) =n(-0.969+0.206n)\dot{P_{man}}
+\end{align}
+
+It has been found convenient to express the load power as the function
+\begin{equation}
+P_{b}(n)=k_{b}n^3
+\end{equation}
+where $k_{b}$ is the loading parameter. It is adjusted in such a way that the engine is loaded to the desired power level at a given operating point.\\
+
+The thermal efficiency has several contribution and is thus written as a product of three terms
+
+\begin{equation}
+N_{i}(\lambda ,n, \dot{P_{man}}) = N_{in}(n) N_{ip}(\dot{P_{man}}) N_{i\lambda }(\lambda )
+\end{equation}
+\\
+These terms are given in order of decreasing importance.
+
+\begin{align}
+&N_{in}(n)=0.558(1-0.392n^{-0.360})
+\\
+&N_{ip}(\dot{P_{man}})=0.9301+0.2154\dot{P_{man}}-0.1657\dot{P_{man}}^2
+\\
+&N_{i\lambda }(\lambda ) = \begin{cases} -0.0205+1.741\lambda -0.745\lambda ^2, & \mbox{if } \lambda > 1 \\ -1.299+3.599\lambda -1.332\lambda ^2, & \mbox{if } \lambda \leq 1 \end{cases}
+\end{align}
+
+\subsection*{Fuel vapor and fuel film sub-system}
+
+The model for the the fuel dynamics is due to Aquino \cite{aquino1981transient}. This model keeps track of the fuel mass in the intake manifold instead of the fuel flow. The single time constant version of this model can be written
+
+\begin{align}
+\ddot{m_{f}}&=\frac{1}{\tau _{f}}[(1-X)\ddot{m_{fi}}+X\dot{m_{fi}}-\dot{m_{ff}}]
+\\
+\ddot{m_{ff}}&=X\dot{m_{fi}}-\dot{m_{ff}}
+\end{align}
+where $\tau _{f}$ is approximately constant at given coolant temperature and is on the order of 1 sec for a throttle body injection system.
+\\
+
+Using step fuel pulse identification techniques originally reported in 1990 \cite{hendricks1990mean}, the X function for the mapped engine is
+
+\begin{equation}
+X(\alpha) = 0.1+8.89*10^{-3}\alpha
+\end{equation}
+
+
+\subsection*{Lambda sensor model}
+
+For the lambda sensor model the parameters used in the equations are the following:
+
+\begin{itemize}
+	\item $\tau _{e}=0.01$ sec
+	\item $AFR_{st}=14.86$
+	\item $\theta _{EVO}= 180-40=140$ degrees
+\end{itemize}
+The equations used for these parameters are thoroughly described in Section 3.1.1.4
+
+
+\end{appendices}

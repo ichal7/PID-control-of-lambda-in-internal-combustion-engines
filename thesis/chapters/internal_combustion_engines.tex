@@ -1,0 +1,188 @@
+\chapter{Internal Combustion Engines}\label{ch:2}
+Our aim in this chapter is to describe some parts of the internal combustion engine which are relevant to this work. The first part to consider will be the lambda sensor and the second one will be the catalytic converter.
+
+Both of them are extremely important for making the engine more efficient and decreasing the pollutants from the exhaust system.
+
+\section{Lambda Sensor}
+A \textit{lambda} (or oxygen) \textit{sensor} is a computerized apparatus that determines the proportion of oxygen ($0_2$) in a fluid being tested.  The lambda sensor plays a significant role in the reduction of exhaust pollutants of Internal Combustion Engines (ICEs) \cite{Nielsen_2000} .
+
+Oxygen sensors are so essential because they help resolve whether the air to fuel ratio (lambda) of an ICE is either rich or lean.
+
+It is well known that the lambda sensors are located in the exhaust pipe, thus they can not directly measure the air or the fuel that is entering the engine. The sensor needs information from other sources so it can determine the air to fuel ratio. According to the sensor data, the fuel injection varies the fuel injector output so that the fuel is close to stoichiometrically burnt every time. This is referred to as closed-loop operation. 
+
+Lambda sensor helps electronic fuel injection to work properly. Another advantage of the lambda sensor is that it helps reduce the amounts of both unburnt fuel and oxides of nitrogen entering the atmosphere.
+ 
+Unburnt fuel is emission from fuel that left the combustion chamber without being burnt, while oxides of nitrogen (NOx gases) are formed from very high temperatures in the combustion and are one of the main causes of smog and acid rain.
+ 
+As mentioned earlier the sensor can not directly measure the air to fuel ratio. What is being measured is the difference between the concentration of $0_{2}$ in the mixture leaving the combustion chamber and the concentration of oxygen in ambient air. Rich mixture means that the mixture leaving the combustion chamber contains little oxygen. The oxygen sensor will accordingly produce a voltage output, which the Engine Control Unit (ECU) senses and determines whether the fuel mixture is rich. If the mixture is lean, because of the oxygen excess, the oxygen sensor will generate a low voltage output.
+
+
+\subsection{History}
+The foundations of lambda technology reach back to the late 1960s, when Robert Bosch under the supervision of Dr. Günter Bauman developed the first functional oxygen sensor.
+
+One of the earliest ordeals in the making of  the sensors was that they had to be able to endure exhaust temperatures of up to 1000 degrees Celsius so the need for heat-resistant materials was crucial. In the next few years these materials were found thanks to the knowledge about manufacturing ceramics in spark plug production. The next step was to test several sensors for thermal rating and heat conductivity. At first the sensors tested lasted just two hours. After several years they finally achieved a hundred times of service life more than the first sensors. In the early 1980’s oxygen sensor manufacturers, manufactured a model that was heatable and as a result  it would function correctly half a minute after the engine was started.
+
+The wideband sensor entered the market in the early nineties making the sensors more reliable and less expensive.
+ 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{first-lambda-sensor}
+    \caption{First generation lambda sensor, from the Bosch Archives collection, late 1970ies \cite{bosch}} 
+    \label{fig:first_sensor}
+\end{figure}
+
+
+
+\subsection{How it works}
+Internal combustion engines are one of the major causes of air pollution\cite{Nielsen_2000} \cite{worldbank} \cite{TWIGG20072}. For this reason modern spark-ignited (SI) engines use lambda sensors and catalytic converters. 
+
+The first step of the closed-loop operation is getting information about the oxygen concentration. Then the information is sent to the engine management computer or \textit{engine control unit} (ECU) and from there the amount of fuel injected into the engine is adjusted accordingly. 
+ 
+The essential goal is a compromise between power, fuel economy, and exhaust  emissions, and in most of the times is made possible by an air to fuel ratio close to stoichiometric \footnote{stoichiometric air to fuel ratio is 14.7 for spark-ignition engines}. 
+ 
+For these engine (such as those that burn gasoline or LPG, as opposed to diesel), the three types of emissions modern systems are concerned with are: hydrocarbons (which are released when the fuel is not burnt completely, such as when misfiring or running rich), oxides of nitrogen (they are very undesirable, because they react to the atmosphere in presence of sunlight to form ozone and causes photochemical smog) and carbon monoxide (CO is intermediate product of combustion which remains in the exhaust if there is not enough oxygen to convert to carbon dioxide, known as incomplete combustion)\cite{sher1998handbook}.
+
+\subsection{Failures of Lambda Sensor}
+There are several causes why a lambda sensor fails. The most common failure occurs through various contaminants that enter the exhaust. Some of these contaminants are silicates from internal engine coolant escape (because of a faulty head gasket or a fissure in a cylinder wall or combustion chamber) and excessive oil consumption (because of shabby rings or valve guides). 
+
+Another cause is the failure of the heating element in the sensor. The heat inside the sensor and the temperature of the heating element results in the element eroding over time and eventually failure.
+
+Also, using the wrong time of fuel or even the use of leaded fuels can cause the sensor to fail or damage the catalytic converter. 
+ 
+Last but not least, normal ageing is a notable cause of failure.
+The consequence of a damaged lambda sensor is air to fuel ratios
+that cannot correspond quickly to the time-changing engine conditions. Furthermore, a malfunctioning oxygen sensor will result in elevated fuel consumption as well as increased exhaust pollutants. 
+Hopefully, most modern engine management systems have the ability to instantly detect a damaged lambda sensor \cite{baltusis2004board}.
+
+
+\subsection{Closed-Loop Operation}
+While the engine is under no load or during part-load conditions where the engine is maintaining the car at a constant velocity, the ECU is said to be operating in \textit{closed-loop mode} \cite{richter2006understanding}. This means that there is a feedback loop between the engine control unit and the lambda sensor. The purpose of the feedback loop is to keep the air to fuel ratio at its stoichiometric value.
+
+In case of a lean mixture the ECU will try to increase the fuel efficiency, but at the same time there will be a minor rise in NOx emissions as well as way greater exhaust gas temperatures.
+ 
+In case of a rich mixture the ECU will try to increase the power to a point, but at the same time there will be a reduction in fuel efficiency as well as a rise in unburnt hydrocarbons in the exhaust. The result will be overheating of the catalytic converter and thereafter failure.
+
+ 
+\subsection{Open-Loop Operation}
+When an internal combustion engine is under high load, for example when it is accelerating or when it is decelerating the engine control unit is said to be in \textit{open-loop mode} \cite{richter2006understanding}. In this mode the output of the oxygen sensor is ignored and the engine control unit automatically enhances the mixture to preserve the engine. Whether the mixture is either rich or lean there will be no change in the fuel injector.
+
+
+\subsection{Types of Lambda Sensor}
+There are three main types of lambda sensor:
+\begin{itemize}
+\item The zirconium type which is also referred to as narrowband sensor, it is the most common and oldest type.
+\item The strontium titanate sensor which is most commonly encountered on vehicles using the Siemens engine management system.
+\item The planar or wideband sensor which is found in the latest generations of engines.
+\end{itemize}
+
+\subsubsection*{Zirconium Sensor}
+The sensor consists of a solid ceramic electrolyte (zirconium dioxide), coated with micro-porous platinum, which conducts oxygen ions at temperatures above 250 degrees celsius \cite{1622233}. This arrangement acts like a tiny battery, and it is this (very small) voltage that is measured by the engine control unit using a high-impedance input. The sensor element consists of the inner and the outer layer which are isolated from each other and exposed to different gases. The inner layer is exposed to the ambient air, whereas the outer layer of the sensor is exposed to the exhaust pipe.
+
+The sensor is right next to a heating element because it only starts to work properly when it reaches above 350 degrees Celsius. Although the exhaust gases are capable of heating the sensor up this much when the car is at idle, during cold start and other operating conditions where the exhaust gases are cooler the assistance of the heater is needed.
+Figure \ref{fig:Zirconium}  shows the construction of a Zirconium Dioxide Sensor.
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{ZirconiumDioxide}
+    \caption{Enlarged cross sectional representation of the zirconia substrate \cite{zirconia}}
+    \label{fig:Zirconium}
+\end{figure}
+
+
+\subsubsection*{Strontium Titanate Sensor}
+Strontium Titanate is a ceramic semiconductor material. Its conductivity depends on the material temperature and oxygen partial pressure, which means that it does not generate its own voltage as the Zirconia type do. Instead, the resistance of the sensing element adjusts with regards to the $0_{2}$ present in the exhaust emissions  \cite{gerblinger1991fast}. 
+
+One motive strontium titanate sensors were originally used is because they are less susceptible to lead poisoning than the Zirconium types. They are, however, more susceptible to anti-freeze problems than the Zirconium types.
+Some of the advantages that led strotium titanate sensors to be widely used are faster response times and more compact packaging. As can be seen in Figure \ref{fig:strontiumTitanate}, the strontium titanate sensor has a planar structure.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{strontiumTitanate}
+    \caption{Planar structure of the strontium titanate sensor \cite{kiencke2005automotive}}
+    \label{fig:strontiumTitanate}
+\end{figure}
+
+\subsubsection*{Wideband Sensor}
+Wideband Sensors are much better at metering exactly how much oxygen is in the exhaust pipe, rather than the simple shifting operation of the zirconium sensors.
+Wideband Sensors have become necessary due to strict regulations about gas emissions \cite{widebandarticle}.
+
+The only difference between the wideband sensor and the more common types is an extra internal system, a device which is called oxygen pump. Furthermore, it can measure a far wider range than a traditional sensor, but more importantly when it is within the range of interest (from lambda=0.9 to lambda=1.1) the response is fairly linear, meaning that we can determine the exact oxygen content of the exhaust gas.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{wideband}
+    \caption{Cutway view of a wideband sensor \cite{wideband}}
+    \label{fig:wideband}
+\end{figure}
+
+\section{Catalytic Converter}
+A catalytic converter is an exhaust emission control device that uses a catalyst to convert toxic gases and pollutants (hydrocarbons, carbon monoxide, nitrogen oxides) in the car exhaust into nontoxic admixture.
+
+\subsection{Exhaust gas emissions from  SI Engines}
+Emissions from SI engines are strongly dependant by the air to fuel ratio lambda, hence it is really important to correlate them.
+
+Figure \ref{fig:emissionbeforelambda} illustrates how the exhaust gases change according to different values of lambda.
+
+Carbon monoxide and hydrocarbon concentrations decrease while lambda increases, whereas the nitrogen oxides concentrations increase gradually up to a maximum value (where lambda is exactly 1.07), and then decrease again. This behavior is described thoroughly by Manahan \cite{manahan}.
+This occurs because in regions where lambda is greater than one the air to fuel mixture is lean and as a result the combustion may be incomplete, hence there will be more unburned fuel.
+
+The behaviour of NOx is also interesting. When lambda in not close to one (either lower or higher), smaller temperatures are detected inside the combustion chamber. Therefore, as the highest temperatures are observed with stoichiometric combustion, the highest concentrations of NOx occur when lambda is close to one \cite{heywood1988internal}. Last but not least, as we can see from the Figure  for $\lambda=1$ the emissions of HC, CO and NOx are relatively low, while for other values of lambda the emissions are getting considerably high.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{emissionbeforelambda}
+    \caption{Measurement of exhaust gases: oxygen, hydrocarbon, nitrogen oxide and carbon monoxide. The concentration before the catalytic converter are indicated by dotted and the concentrations after the catalytic converter by straight lines \cite{kiencke2005automotive}.}
+    \label{fig:emissionbeforelambda}
+\end{figure}
+
+\subsection{The three-way catalyst}
+The most popular method used by vehicle manufacturers to reduce engine emissions is the three-way catalyst (catalytic converter). The 3-way catalytic converter is a complex apparatus that converts harmful gases in the engine exhaust to relatively harmless gases. It consists of two catalysts: one for the reduction of nitrogen oxides to nitrogen, and one for the oxidation of carbon monoxide to carbon dioxide as well as for the oxidation of unburnt hydrocarbons to carbon dioxide and water \cite{chang1996novel}. 
+This procedure takes two stages to complete
+\begin{enumerate}
+\item \textbf{First stage}: The exhaust gases are sent over the reduction catalyst and the NOx are removed.
+\item \textbf{Second stage}: The exhaust gases (free from NOx) are sent over the oxidation catalyst to be converted to less harmful gases.
+\end{enumerate}
+The most important chemical reactions are listed below    \cite{kiencke2005automotive}:
+
+\textbf{Oxidation of} HC \textbf{and} CO:
+\begin{figure}[H]
+    \centering
+    \includegraphics{oxidation}
+\end{figure}
+
+\textbf{Reduction of} NOx:
+\begin{figure}[H]
+    \centering
+    \includegraphics{reduction}
+\end{figure}
+
+\textbf{Other catalytic reactions}:
+\begin{figure}[H]
+    \centering
+    \includegraphics{reactions}
+\end{figure}
+
+
+The conversion ratio depends on the air-fuel ratio and the converter volume. At idle speed engine operation, the conversion ratio is high, even if the catalyst would be already partially damaged. During transients, fluctuations in the air-fuel ratio occur, resulting in higher emissions. During the warm-up phase of the engine and the exhaust pipe, temperatures are too small for chemical reactions and the conversion rate is weak.
+
+The three-way catalyst uses a specific catalyst formulation to reduce NOx and oxidize HC and CO all at the same time. It is designed to reduce all three major emissions by approximately 90 percent. As it can be seen from Figure \ref{fig:catalyticconverter} it is composed of a metal housing and the core has a honeycomb structure. The catalytic converter  consists of precious metals such as platinum which supports more the oxidation of CO and HC, and rhodium which supports more the reduction  of the nitrogen oxides NOx. Furthermore, to carry out the conversion of gases efficiently the catalytic converter must operate at a temperature of at least 426 degrees Celsius, for this reason the converter is mounted into the exhaust pipe. 
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{catalyticconverter}
+    \caption{Three-way catalytic converter with ceramic substrates \cite{catalyticconverter}.}
+    \label{fig:catalyticconverter}
+\end{figure}
+
+
+There are two possibilities concerning the catalytic converter. Either the mixture running through is rich or lean. When the mixture is lean, there is excess oxygen  and as a result the reactions support the oxidation of CO and HC. On the other hand, when the mixture is rich, there is more fuel than needed, thus the reactions support the reduction of NOx. That is the reason why the catalytic converter can not be 100 percent efficient.
+
+\subsection{Failures of the three-way Catalyst}
+The three-way catalyst is designed to last for more than 15 years, but they can become contaminated, clogged, overheated or physically damaged.
+ 
+Catalyst poisoning occurs when the three-way catalyst is exposed to contaminants that coat the working surfaces. One potential contaminant is leaded gas. Others contaminants include engine coolant, which can enter the exhaust pipe in case of an engine leak due to a faulty cylinder head gasket, or engine oil that leaks in the exhaust system, due to piston rings that lose their ability to properly seal. If the pollutants have a low boiling point there is a possibility that the catalyst poisoning can be reversed by running the engine under a very large cargo, resulting in high exhaust temperatures. 
+
+Another problem that may occur is overheating. Three-way catalyst can overheat due to big loads of unburned fuel caused by spark plugs that do not fire or a faulty exhaust valve. Overheating can harm or even destroy the honeycomb-like structure that is needed for the catalytic converter to function efficiently.

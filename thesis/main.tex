@@ -1,0 +1,127 @@
+\documentclass[12pt,twoside]{report}
+% \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage[toc,page]{appendix}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setup Header / Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{%
+\markboth{#1}{}}
+
+\fancyhf{}
+
+\fancyhead[RE,LO]{\ifnum\value{chapter}>0 Chapter \thechapter: \leftmark \fi}
+
+\fancyfoot[LE,RO]{\thepage}
+
+\usepackage{etoolbox}
+
+% \usepackage{glossaries}
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+
+%%%%%%%%%%%% Table setup
+\usepackage{tabularx,ragged2e}
+% \newcolumntype{Y}{>{\RaggedRight\arraybackslash\hspace{0pt}}X}
+% \newcolumntype{C}{>{\Centering\arraybackslash\hspace{0pt}}X}
+\usepackage{longtable}
+\newcolumntype{C}{>{\centering\arraybackslash}p}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setup Title format per chapter: "ChapterNumber: ChapterTitle" %
+
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\thechapter}{1em}{} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\oldquote\quote
+\let\endoldquote\endquote
+\renewenvironment{quote}[2][]
+  {\if\relax\detokenize{#1}\relax
+     \def\quoteauthor{#2}%
+   \else
+     \def\quoteauthor{#2~---~#1}%
+   \fi
+   \oldquote}
+  {\par\nobreak\smallskip\hfill(\quoteauthor)%
+   \endoldquote\addvspace{\bigskipamount}}
+   
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{ {images/} }
+\setcounter{secnumdepth}{3} % default value for 'report' class is "2" 	
+
+% \loadglsentries{glossary}
+
+%%%%%%%%%%%%%%%%%  Nomenclature
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Symbols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\pagenumbering{Roman} 
+
+\input{title_page/title-page}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=1.0\textwidth]{perilipsi}
+%\end{figure}
+
+\input{chapters/abstract.tex}
+
+\input{chapters/acknowledgments}
+
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+%%1.PdfLatex 2.MakeIndex 3.PdfLatex. 4.ViewPDF
+\input{nomenclature/nomenclature.tex}
+\printnomenclature
+
+\clearpage
+
+\pagenumbering{arabic}
+
+\input{chapters/introduction}
+ 
+\input{chapters/internal_combustion_engines.tex}
+
+\input{chapters/control.tex}
+
+\input{chapters/case_study.tex}
+
+\input{chapters/results.tex}
+
+\input{chapters/conclusion.tex}
+
+
+\bibliographystyle{ieeetr}
+\bibliography{references} 
+
+\input{chapters/appendix.tex}
+
+
+
+
+\end{document}
